@@ -1,0 +1,114 @@
+﻿<Window
+    x:Class="CustomCellColoring.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+    xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
+    xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
+    xmlns:dxsch="http://schemas.devexpress.com/winfx/2008/xaml/scheduling"
+    xmlns:dxschv="http://schemas.devexpress.com/winfx/2008/xaml/scheduling/visual"
+    xmlns:local="clr-namespace:CustomCellColoring"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewmodels="clr-namespace:CustomCellColoring.ViewModels"
+    Width="800"
+    Height="450"
+    mc:Ignorable="d"
+    DataContext="{dxmvvm:ViewModelSource viewmodels:MyViewModel}"
+    Title="MainWindow">
+
+    <Window.Resources>
+        <!--region #ResourceBrushSchemaCollection-->
+        <dxsch:ResourceBrushSchemaCollection x:Key="MyResourceSchemas">
+            <dxsch:ResourceBrushSchema>
+                <dxsch:ResourceBrushSchema.LightCell>
+                    <dxsch:CellBrushSchema
+                        Background="White"
+                        DarkBorderBrush="Gray"
+                        LightBorderBrush="LightGray" />
+                </dxsch:ResourceBrushSchema.LightCell>
+                <dxsch:ResourceBrushSchema.DarkCell>
+                    <dxsch:CellBrushSchema
+                        Background="Gray"
+                        DarkBorderBrush="Gray"
+                        LightBorderBrush="Gray" />
+                </dxsch:ResourceBrushSchema.DarkCell>
+            </dxsch:ResourceBrushSchema>
+            <dxsch:ResourceBrushSchema BaseColor="DarkOrange" />
+            <dxsch:ResourceBrushSchema BaseColor="DarkRed" />
+        </dxsch:ResourceBrushSchemaCollection>
+        <!--endregion #ResourceBrushSchemaCollection-->
+        <!--region #CellControl-->
+        <Style x:Key="CellControl.Style" TargetType="dxschv:CellControl">
+            <Style.Triggers>
+                <MultiDataTrigger>
+                    <MultiDataTrigger.Conditions>
+                        <Condition Value="1" Binding="{Binding Resource.Id}" />
+                        <Condition Value="True" Binding="{Binding IsSelected}" />
+                    </MultiDataTrigger.Conditions>
+                    <Setter Property="ContentTemplate">
+                        <Setter.Value>
+                            <DataTemplate>
+                                <StackPanel Background="Black">
+                                    <dxschv:FastTextBlock
+                                        HorizontalAlignment="Center"
+                                        Foreground="White"
+                                        FontSize="10"
+                                        Text="{Binding Interval}"
+                                        WordWrap="True" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </MultiDataTrigger>
+            </Style.Triggers>
+        </Style>
+        <!--endregion #CellControl-->
+        
+        <Style TargetType="dxsch:DayView">
+            <Style.Triggers>
+                <DataTrigger Value="True" Binding="{Binding UseCustomCellControlStyle}">
+                    <Setter Property="CellStyle" Value="{StaticResource CellControl.Style}" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="dxsch:SchedulerControl">
+            <Style.Triggers>
+                <DataTrigger Value="True" Binding="{Binding UseResourceBrushSchema}">
+                    <Setter Property="ResourceBrushSchemas" Value="{StaticResource MyResourceSchemas}" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+
+    <DockPanel>
+        <dxlc:LayoutControl
+            Height="50"
+            Margin="10,10,10,10"
+            VerticalAlignment="Top"
+            DockPanel.Dock="Top"
+            Orientation="Horizontal"
+            Padding="0">
+            <dxe:CheckEdit Content="Custom Cell Control Style" IsChecked="{Binding UseCustomCellControlStyle, Mode=TwoWay}" HorizontalAlignment="Center" Padding="10" />
+            <dxe:CheckEdit Content="Custom Resource Brush Schema" IsChecked="{Binding UseResourceBrushSchema, Mode=TwoWay}" HorizontalAlignment="Center" Padding="10"  />
+        </dxlc:LayoutControl>
+        <dxsch:SchedulerControl x:Name="scheduler" GroupType="Resource">
+            <dxsch:DayView x:Name="dayView" ResourcesPerPage="3"
+                           NavigationButtonsVisibility="Never"/>
+            <dxsch:SchedulerControl.DataSource>
+                <dxsch:DataSource ResourcesSource="{Binding Categories}">
+                    <dxsch:DataSource.ResourceMappings>
+                        <dxsch:ResourceMappings>
+                            <dxsch:ResourceMappings.Caption>Name</dxsch:ResourceMappings.Caption>
+                            <dxsch:ResourceMappings.Id>Id</dxsch:ResourceMappings.Id>
+                            <!--Uncomment two lines below to paint cells with resource colors specified by the Resource.ColorInfo property-->
+                            <!--<dxsch:ResourceMappings.Color>ColorInfo</dxsch:ResourceMappings.Color>-->
+                            <!--<dxsch:ResourceMappings.ColorSavingType>ColorInstance</dxsch:ResourceMappings.ColorSavingType>-->
+                        </dxsch:ResourceMappings>
+                    </dxsch:DataSource.ResourceMappings>
+                </dxsch:DataSource>
+            </dxsch:SchedulerControl.DataSource>
+        </dxsch:SchedulerControl>
+    </DockPanel>
+
+</Window>
