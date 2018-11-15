@@ -1,3 +1,11 @@
+<!-- default file list -->
+*Files to look at*:
+
+* [MainWindow.xaml](./CS/CustomCellColoring/MainWindow.xaml) (VB: [MainWindow.xaml.vb](./VB/CustomCellColoring/MainWindow.xaml.vb))
+* [MainWindow.xaml.cs](./CS/CustomCellColoring/MainWindow.xaml.cs) (VB: [MainWindow.xaml.vb](./VB/CustomCellColoring/MainWindow.xaml.vb))
+* [MyCategory.cs](./CS/CustomCellColoring/Model/MyCategory.cs) (VB: [MyCategory.vb](./VB/CustomCellColoring/Model/MyCategory.vb))
+* [MyViewModel.cs](./CS/CustomCellColoring/ViewModels/MyViewModel.cs) (VB: [MyViewModel.vb](./VB/CustomCellColoring/ViewModels/MyViewModel.vb))
+<!-- default file list end -->
 # How to set the cell color using different approaches
 
 
