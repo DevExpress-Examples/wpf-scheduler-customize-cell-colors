@@ -53,4 +53,4 @@ This example illustrates approaches to set the time cell background in a schedul
     </dxsch:DataSource.TimeRegionMappings>
 ```
 
-5. (*not recommended*) Declare a custom cell style for a view using its CellStyle property as demonstrated in [previous versions of this example](https://github.com/DevExpress-Examples/how-to-set-the-cell-color-using-different-approaches-t604609/tree/17.2.3+).
+5. (*not recommended*) Declare a custom cell style for a view using its CellStyle property as demonstrated in [previous versions of this example](https://github.com/DevExpress-Examples/how-to-set-the-cell-color-using-different-approaches-t604609/tree/17.2.3+). 
