@@ -13,15 +13,15 @@ Imports System.Windows.Media.Imaging
 Imports System.Windows.Navigation
 Imports System.Windows.Shapes
 
-Namespace CustomCellColoring
-    ''' <summary>
-    ''' Interaction logic for MainWindow.xaml
-    ''' </summary>
-    Partial Public Class MainWindow
-        Inherits Window
+Namespace DXSample.Views
+	''' <summary>
+	''' Interaction logic for TimeRegionsView.xaml
+	''' </summary>
+	Partial Public Class TimeRegionsView
+		Inherits UserControl
 
-        Public Sub New()
-            InitializeComponent()
-        End Sub
-    End Class
+		Public Sub New()
+			InitializeComponent()
+		End Sub
+	End Class
 End Namespace
