@@ -14,7 +14,7 @@ This example illustrates approaches to set the time cell background in a schedul
 </dxsch:DataSource.ResourceMappings>
 ```
 
-2. Declare a custom resource brush set using the [BrushSet](https://docs.devexpress.com/WPF/DevExpress.Xpf.Scheduling.SchedulerControl.BrushSet) property. Refer to [Brushes and Customization](https://docs.devexpress.com/WPF/400994/controls-and-libraries/scheduler/appearance-customization#brushes-and-customization) for more information.
+2. Declare a custom resource brush set using the [BrushSet](https://docs.devexpress.com/WPF/DevExpress.Xpf.Scheduling.SchedulerControl.BrushSet) property. Refer to [Brushes and Customization](https://docs.devexpress.com/WPF/400994/controls-and-libraries/scheduler/appearance-customization#brushes-and-customization) for more information.
 
 ```xml
 <dxsch:SchedulerControl.BrushSet>
@@ -27,7 +27,7 @@ This example illustrates approaches to set the time cell background in a schedul
 </dxsch:SchedulerControl.BrushSet>
 ```
 
-3. Declare a custom resource provider set using the [BrushProvider](https://docs.devexpress.com/WPF/DevExpress.Xpf.Scheduling.Common.BrushProvider) property. Refer to [Brush Provider](https://docs.devexpress.com/WPF/400994/controls-and-libraries/scheduler/appearance-customization#brush-provider) for more information.
+3. Declare a custom resource provider set using the [BrushProvider](https://docs.devexpress.com/WPF/DevExpress.Xpf.Scheduling.Common.BrushProvider) property. Refer to [Brush Provider](https://docs.devexpress.com/WPF/400994/controls-and-libraries/scheduler/appearance-customization#brush-provider) for more information.
 
 ```xml
 <dxsch:SchedulerControl.BrushProvider>
