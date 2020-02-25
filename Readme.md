@@ -1,20 +1,56 @@
-<!-- default file list -->
-*Files to look at*:
-
-* [MainWindow.xaml](./CS/CustomCellColoring/MainWindow.xaml) (VB: [MainWindow.xaml](./VB/CustomCellColoring/MainWindow.xaml))
-* [MainWindow.xaml.cs](./CS/CustomCellColoring/MainWindow.xaml.cs) (VB: [MainWindow.xaml.vb](./VB/CustomCellColoring/MainWindow.xaml.vb))
-* [MyCategory.cs](./CS/CustomCellColoring/Model/MyCategory.cs) (VB: [MyCategory.vb](./VB/CustomCellColoring/Model/MyCategory.vb))
-* [MyViewModel.cs](./CS/CustomCellColoring/ViewModels/MyViewModel.cs) (VB: [MyViewModel.vb](./VB/CustomCellColoring/ViewModels/MyViewModel.vb))
-<!-- default file list end -->
 # How to set the cell color using different approaches
 
-
-This example illustrates approaches to set the color of a time cell in a scheduler grouped by resource.<br>1. Each resource can have its own color specified by the <a href="http://help.devexpress.com/#WPF/DevExpressXpfSchedulingResourceItem_Colortopic">ResourceItem.Color</a> property. Uncomment two lines in the MainWindow's XAML to assign the resource color mapping, so that each resource obtains its color from the data source.<br>2. Use a custom resource brush schema. Create a <a href="http://help.devexpress.com/#WPF/clsDevExpressXpfSchedulingResourceBrushSchemaCollectiontopic">ResourceBrushSchemaCollection</a> object in MainWindow's XAML resources and assign it to the  <a href="http://help.devexpress.com/#WPF/DevExpressXpfSchedulingSchedulerControl_ResourceBrushSchemastopic">SchedulerControl.ResourceBrushSchemas</a> property.<br>3. Create a <a href="http://help.devexpress.com/#WPF/clsDevExpressXpfSchedulingVisualCellControltopic">CellControl</a>'s data template, define a cell style and assign the style to the appropriate property of the desired view
-
-* Day view, Work-Week view, Week view - use the <a href="http://help.devexpress.com/#WPF/DevExpressXpfSchedulingDayViewBase_AllDayCellStyletopic">DayViewBase.AllDayCellStyle</a> and <a href="http://help.devexpress.com/#WPF/DevExpressXpfSchedulingDayViewBase_CellStyletopic">DayViewBase.CellStyle</a> properties;
-* Month view - use the <a href="http://help.devexpress.com/#WPF/DevExpressXpfSchedulingMonthView_CellStyletopic">MonthView.CellStyle</a> property;
-* Timeline view - use the <a href="http://help.devexpress.com/#WPF/DevExpressXpfSchedulingTimelineView_CellStyletopic">TimelineView.CellStyle</a> property.<br>The picture below demonstrates a custom cell style and template applied to the selected cells of the resource with ID=1.  A custom data template displays the time interval contained in the cell's data context.<br><img src="https://raw.githubusercontent.com/DevExpress-Examples/how-to-set-the-cell-color-using-different-approaches-t604609/17.2.3+/media/8eba6552-cd7a-4c2c-aa89-223b074362d6.png">
+This example illustrates approaches to set the time cell background in a scheduler grouped by resource:
 
 <br/>
 
+1. In [classic themes](https://docs.devexpress.com/WPF/400994/controls-and-libraries/scheduler/appearance-customization#classic-themes), a cell background color depends on the resource's color that can be specified via [ResourceItem](https://docs.devexpress.com/WPF/DevExpress.Xpf.Scheduling.ResourceItem)'s [Brush](https://docs.devexpress.com/WPF/DevExpress.Xpf.Scheduling.ResourceItem.Brush)/[BrushName](https://docs.devexpress.com/WPF/DevExpress.Xpf.Scheduling.ResourceItem.BrushName) or [ResourceMappings](https://docs.devexpress.com/WPF/DevExpress.Xpf.Scheduling.ResourceMappings)' [Brush](https://docs.devexpress.com/WPF/DevExpress.Xpf.Scheduling.ResourceMappings.Brush) or [BrushName](https://docs.devexpress.com/WPF/DevExpress.Xpf.Scheduling.ResourceMappings.BrushName)
 
+```xml
+<dxsch:DataSource.ResourceMappings>
+    <dxsch:ResourceMappings Brush="Brush"
+                            Caption="Caption"
+                            Id="Id" />
+</dxsch:DataSource.ResourceMappings>
+```
+
+2. Declare a custom resource brush set using the [BrushSet](https://docs.devexpress.com/WPF/DevExpress.Xpf.Scheduling.SchedulerControl.BrushSet) property. Refer to [Brushes and Customization](https://docs.devexpress.com/WPF/400994/controls-and-libraries/scheduler/appearance-customization#brushes-and-customization) for more information.
+
+```xml
+<dxsch:SchedulerControl.BrushSet>
+    <dxsch:BrushSet>
+        <dxsch:BrushInfo Name="{x:Static dxsch:DefaultBrushNames.Resource1}"
+                         Brush="OrangeRed" />
+        <dxsch:BrushInfo Name="{x:Static dxsch:DefaultBrushNames.Resource2}"
+                         Brush="YellowGreen" />
+    </dxsch:BrushSet>
+</dxsch:SchedulerControl.BrushSet>
+```
+
+3. Declare a custom resource provider set using the [BrushProvider](https://docs.devexpress.com/WPF/DevExpress.Xpf.Scheduling.Common.BrushProvider) property. Refer to [Brush Provider](https://docs.devexpress.com/WPF/400994/controls-and-libraries/scheduler/appearance-customization#brush-provider) for more information.
+
+```xml
+<dxsch:SchedulerControl.BrushProvider>
+    <dxsch:BrushProvider DefaultDarkCellBackground="LightCoral"                                                
+                         DefaultLightCellBackground="LightSeaGreen"                                            
+                         ResourceDarkCellBackground="{dxsch:OverrideBrushTransform OverrideBrush=LightGreen}"  
+                         ResourceLightCellBackground="{dxsch:OverrideBrushTransform OverrideBrush=LightBlue}"/>
+</dxsch:SchedulerControl.BrushProvider>
+```
+
+4. Use the [Time Regions](https://docs.devexpress.com/WPF/401378/controls-and-libraries/scheduler/time-regions) feature to highlight specific time frames.
+
+```xml
+<dxsch:DataSource AppointmentsSource="{Binding Appointments}"
+                  ResourcesSource="{Binding Resources}"
+                  TimeRegionsSource="{Binding TimeRegions}">
+    <dxsch:DataSource.TimeRegionMappings>
+        <dxsch:TimeRegionMappings Brush="Brush"
+                                  End="EndTime"
+                                  Id="Id"
+                                  ResourceId="ResourceId"
+                                  Start="StartTime" />
+    </dxsch:DataSource.TimeRegionMappings>
+```
+
+5. (*not recommended*) Declare a custom cell style for a view using its CellStyle property as demonstrated in [previous versions of this example](https://github.com/DevExpress-Examples/how-to-set-the-cell-color-using-different-approaches-t604609/tree/17.2.3+).
