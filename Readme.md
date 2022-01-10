@@ -3,13 +3,15 @@
 [![](https://img.shields.io/badge/Open_in_DevExpress_Support_Center-FF7200?style=flat-square&logo=DevExpress&logoColor=white)](https://supportcenter.devexpress.com/ticket/details/T604609)
 [![](https://img.shields.io/badge/📖_How_to_use_DevExpress_Examples-e9f6fc?style=flat-square)](https://docs.devexpress.com/GeneralInformation/403183)
 <!-- default badges end -->
-# How to set the cell color using different approaches
+# How to: Customize Scheduler Cell Colors
 
-This example illustrates approaches to set the time cell background in a scheduler grouped by resource:
+This example illustrates techniques to set the time cell background in a scheduler grouped by resource:
 
 <br/>
 
-1. In [classic themes](https://docs.devexpress.com/WPF/400994/controls-and-libraries/scheduler/appearance-customization#classic-themes), a cell background color depends on the resource's color that can be specified via [ResourceItem](https://docs.devexpress.com/WPF/DevExpress.Xpf.Scheduling.ResourceItem)'s [Brush](https://docs.devexpress.com/WPF/DevExpress.Xpf.Scheduling.ResourceItem.Brush)/[BrushName](https://docs.devexpress.com/WPF/DevExpress.Xpf.Scheduling.ResourceItem.BrushName) or [ResourceMappings](https://docs.devexpress.com/WPF/DevExpress.Xpf.Scheduling.ResourceMappings)' [Brush](https://docs.devexpress.com/WPF/DevExpress.Xpf.Scheduling.ResourceMappings.Brush) or [BrushName](https://docs.devexpress.com/WPF/DevExpress.Xpf.Scheduling.ResourceMappings.BrushName)
+1. In [classic themes](https://docs.devexpress.com/WPF/400994/controls-and-libraries/scheduler/appearance-customization#classic-themes), a cell background color depends on the resource's color. Use the following properties to specify the resource color:
+    * [ResourceItem.Brush](https://docs.devexpress.com/WPF/DevExpress.Xpf.Scheduling.ResourceItem.Brush) and [ResourceItem.BrushName](https://docs.devexpress.com/WPF/DevExpress.Xpf.Scheduling.ResourceItem.BrushName)
+    * [ResourceMappings.Brush](https://docs.devexpress.com/WPF/DevExpress.Xpf.Scheduling.ResourceMappings.Brush) and [ResourceMappings.BrushName](https://docs.devexpress.com/WPF/DevExpress.Xpf.Scheduling.ResourceMappings.BrushName)
 
 ```xml
 <dxsch:DataSource.ResourceMappings>
@@ -19,7 +21,7 @@ This example illustrates approaches to set the time cell background in a schedul
 </dxsch:DataSource.ResourceMappings>
 ```
 
-2. Declare a custom resource brush set using the [BrushSet](https://docs.devexpress.com/WPF/DevExpress.Xpf.Scheduling.SchedulerControl.BrushSet) property. Refer to [Brushes and Customization](https://docs.devexpress.com/WPF/400994/controls-and-libraries/scheduler/appearance-customization#brushes-and-customization) for more information.
+2. Use the [BrushSet](https://docs.devexpress.com/WPF/DevExpress.Xpf.Scheduling.SchedulerControl.BrushSet) property to declare a custom resource brush set. Refer to [Brushes and Customization](https://docs.devexpress.com/WPF/400994/controls-and-libraries/scheduler/appearance-customization#brushes-and-customization) for more information.
 
 ```xml
 <dxsch:SchedulerControl.BrushSet>
@@ -32,7 +34,7 @@ This example illustrates approaches to set the time cell background in a schedul
 </dxsch:SchedulerControl.BrushSet>
 ```
 
-3. Declare a custom resource provider set using the [BrushProvider](https://docs.devexpress.com/WPF/DevExpress.Xpf.Scheduling.Common.BrushProvider) property. Refer to [Brush Provider](https://docs.devexpress.com/WPF/400994/controls-and-libraries/scheduler/appearance-customization#brush-provider) for more information.
+3. Use the [BrushProvider](https://docs.devexpress.com/WPF/DevExpress.Xpf.Scheduling.Common.BrushProvider) property to declare a custom resource provider set. Refer to [Brush Provider](https://docs.devexpress.com/WPF/400994/controls-and-libraries/scheduler/appearance-customization#brush-provider) for more information.
 
 ```xml
 <dxsch:SchedulerControl.BrushProvider>
