@@ -100,6 +100,7 @@ Use the `CellStyle` property to declare a custom cell style for a view, as demon
 
 ## More Examples
 
+* [WPF Scheduler - Highlight Time Intervals](https://github.com/DevExpress-Examples/wpf-scheduler-highlight-time-intervals)
 * [WPF Scheduler - Customize Appointment Appearance](https://github.com/DevExpress-Examples/wpf-scheduler-customize-appointment-appearance)
 * [WPF Scheduler - Handle the CustomAppointmentBackground Event to Change the Appointment Background](https://github.com/DevExpress-Examples/wpf-scheduler-handle-customappointmentbackground-event-to-change-appointment-background)
 * [WPF Scheduler - Customize the Appointment Flyout and Tooltip](https://github.com/DevExpress-Examples/wpf-scheduler-customize-appointment-flyout-and-tooltip)
