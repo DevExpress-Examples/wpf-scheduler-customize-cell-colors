@@ -92,7 +92,7 @@ Use the [Time Regions](https://docs.devexpress.com/WPF/401378/controls-and-libra
 
 ## (*not recommended*) Cell Style
 
-Use the `CellStyle` property to declare a custom cell style for a view, as demonstrated in [previous versions of this example](https://github.com/DevExpress-Examples/how-to-set-the-cell-color-using-different-approaches-t604609/tree/17.2.3+).
+Use the `CellStyle` property to declare a custom cell style for a view, as demonstrated in [previous versions of this example](https://github.com/DevExpress-Examples/wpf-scheduler-customize-cell-colors).
 
 ## Documentation
 
